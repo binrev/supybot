@@ -41,7 +41,7 @@ def configure(advanced):
         conf.supybot.plugins.Snarfer.shrinkSnarfer.setValue(True)
 
 class ShrinkService(registry.OnlySomeStrings):
-    validStrings = ('ln', 'tiny', 'dnb')
+    validStrings = ('ln', 'tiny', 'dnb', 'none')
 
 Snarfer = conf.registerPlugin('Snarfer')
 conf.registerChannelValue(Snarfer, 'shrinkSnarfer',

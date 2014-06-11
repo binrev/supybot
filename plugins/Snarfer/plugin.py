@@ -211,7 +211,9 @@ class Snarfer(callbacks.PluginRegexp):
                         shorturl = self._getDnbUrl(url)
                     elif cmd == 'ln':
                         (shorturl, _) = self._getLnUrl(url)
-                    if shorturl is None:
+                    elif cmd == 'none':
+                        shorturl = None
+                    if shorturl is None and cmd != 'none':
                         self.log.info('Couldn\'t get shorturl for %u', url)
                         shorturl = "ln-s.net refused shortlink"
                 except urllib2.URLError, e:
@@ -219,7 +221,7 @@ class Snarfer(callbacks.PluginRegexp):
                         m = irc.reply(str(e), prefixNick=False)
 
 
-                if not ext_info:
+                if not ext_info and shorturl is not None:
                     if self.registryValue('shrinkSnarfer.showDomain', channel):
                         domain = ' (at %s)' % utils.web.getDomain(url)
                     else:
