@@ -47,16 +47,10 @@ Snarfer = conf.registerPlugin('Snarfer')
 conf.registerChannelValue(Snarfer, 'shrinkSnarfer',
     registry.Boolean(True, """Determines whether the
     shrink snarfer is enabled.  This snarfer will watch for URLs in the
-    channel, and if they're sufficiently long (as determined by
-    supybot.plugins.Snarfer.minimumLength) it will post a
-    smaller URL from ln-s.net, tinyurl.com, or dnb.us as denoted in
-    supybot.plugins.Snarfer.default."""))
+    channel."""))
 conf.registerChannelValue(Snarfer.shrinkSnarfer, 'showDomain',
     registry.Boolean(False, """Determines whether the snarfer will show the
     domain of the URL being snarfed along with the shrunken URL."""))
-conf.registerChannelValue(Snarfer, 'minimumLength',
-    registry.PositiveInteger(1, """The minimum length a URL must be before
-    the bot will shrink it."""))
 conf.registerChannelValue(Snarfer, 'nonSnarfingRegexp',
     registry.Regexp(None, """Determines what URLs are to be snarfed; URLs
     matching the regexp given will not be snarfed.  Give the empty string if
@@ -65,17 +59,11 @@ conf.registerChannelValue(Snarfer, 'outFilter',
     registry.Boolean(False, """Determines whether the bot will shrink the URLs
     of outgoing messages if those URLs are longer than
     supybot.plugins.Snarfer.minimumLength."""))
-conf.registerChannelValue(Snarfer, 'default',
-    ShrinkService('dnb', """Determines what website the bot will use when
-    shrinking a URL."""))
-conf.registerGlobalValue(Snarfer, 'bold',
-    registry.Boolean(True, """Determines whether this plugin will bold certain
-    portions of its replies."""))
 conf.registerChannelValue(Snarfer, 'extendedInfo',
     registry.Boolean(True, """Determines whether extended info is provided to
     the channel after a URL is processed."""))
-conf.registerChannelValue(Snarfer, 'interpolate',
-    registry.Boolean(True, """Determines whether strings that look like URLs
-    will be picked up as such."""))
+
+conf.registerChannelValue(Snarfer, 'linkcache_config',
+    registry.String("", """Location of the linkcache config file"""))
 
 # vim:set shiftwidth=4 softtabstop=4 expandtab textwidth=79:
